@@ -3,29 +3,22 @@ class Solution {
         int m=mt.length;
         int n=mt[0].length;
 
-        for(int i=0;i<m;i++){
-           if (mt[i][0] <= t && t <= mt[i][n - 1]) {
-            return bs(mt[i], t);
-            }
-
-        }
-        return false;
-    }
-
-    public boolean bs(int arr[],int t){
-        int n=arr.length;
-        int l=0,h=n-1;
+        int l=0;
+        int h=n*m-1;
 
         while(l<=h){
-            int m=(l+h)/2;
-            if(arr[m]==t){
+            int mid=(l+h)/2;
+            int r=mid/n;
+            int c=mid%n;
+            if(mt[r][c]==t){
                 return true;
+
             }
-            else if(arr[m]>t){
-                h=m-1;
+            else if(mt[r][c]<t){
+                l=mid+1;
             }
             else{
-                l=m+1;
+                h=mid-1;
             }
         }
         return false;
