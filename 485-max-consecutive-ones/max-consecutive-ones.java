@@ -4,13 +4,15 @@ class Solution {
         for(int i=0;i<nums.length;i++){
             if(nums[i]==1){
                 c++;
-                max=Math.max(c,max);
+                
             }
             else
-         
+            {
+         max=Math.max(c,max);
                 c=0;
+            }
             
         }
-        return max;
+        return Math.max(c,max);
     }
 }
