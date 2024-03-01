@@ -10,10 +10,7 @@ class Solution {
 
         for(int i=1;i<arr.length;i++){
             if(arr[i]-arr[i-1]==ma){
-                List<Integer> ata= new ArrayList<>();
-                ata.add(arr[i-1]);
-                ata.add(arr[i]);
-                ans.add(ata);
+                ans.add(List.of(arr[i-1],arr[i]));
             }
         }
         return ans;
