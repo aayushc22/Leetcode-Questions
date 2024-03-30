@@ -1,6 +1,6 @@
 class Solution {
     public int numSubarrayProductLessThanK(int[] nums, int k) {
-        if (k==0)
+        if (k<=1)
         return 0;
         
         int i=0;
@@ -11,7 +11,7 @@ class Solution {
         while(j<n){
             sum*=nums[j];
 
-            while(sum>=k&&i<=j){
+            while(sum>=k){
                 sum=sum/nums[i];
                 i++;
             }
