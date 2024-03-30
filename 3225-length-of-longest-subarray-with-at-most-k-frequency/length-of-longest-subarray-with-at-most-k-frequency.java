@@ -6,16 +6,25 @@ class Solution {
         int n=nums.length;
 
         int max=0;
+        int culprit=0;
         Map<Integer,Integer> map= new HashMap<>();
 
-        while(i<n&&j<n){
+        while(j<n){
             map.put(nums[j],map.getOrDefault(nums[j],0)+1);
-            while(map.get(nums[j])>k){
+            if(map.get(nums[j])==k+1){
+                culprit++;
+                
+            }
+
+            if(culprit>0){
                 map.put(nums[i],map.get(nums[i])-1);
+                if(map.get(nums[i])==k){
+                    culprit--;
+                }
                 i++;
             }
 
-            max=Math.max(max,j-i+1);
+            if(culprit==0) max=Math.max(max,j-i+1);
             j++;
         }
         return max;
