@@ -1,34 +1,26 @@
 class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
-        List<List<Integer>> res=new ArrayList<List<Integer>>();
-        boolean[] map=new boolean[nums.length];
-        List<Integer> list=new ArrayList<Integer>();
-        //sort the array so that duplicate entries will be next to each other
+         List<Integer> ds = new ArrayList<>();
+        List<List<Integer>> ans = new ArrayList<>();
+        boolean freq[] = new boolean[nums.length];
         Arrays.sort(nums);
-        mapCombo(nums,map,res,list);
-        return res;
+        helper(nums,ds,ans,freq);
+        return ans;
     }
-    
-    private void mapCombo(int[] nums,boolean[] map,List<List<Integer>> res,List<Integer> list){
-        
-        if(list.size()==nums.length){
-            res.add(new ArrayList<>(list));
+    public void helper(int[] arr,List<Integer> ds,List<List<Integer>> ans,boolean[] freq){
+        if(ds.size()==arr.length){
+            ans.add(new ArrayList<>(ds));
             return;
         }
-        
-        for(int i=0;i<nums.length;i++){
-            
-            if(!map[i]){
-                list.add(nums[i]);
-           
-                map[i]=true;
-                mapCombo(nums,map,res,list);
-            
-                map[i]=false;
-                list.remove(list.size()-1);
-                
-                while(i+1<nums.length && nums[i]==nums[i+1])i++;
-                
+
+        for(int i=0;i<arr.length;i++){
+            if(!freq[i]){
+                freq[i]=true;
+                ds.add(arr[i]);
+                helper(arr,ds,ans,freq);
+                freq[i]=false;
+                ds.remove(ds.size()-1);
+                while(i+1<arr.length&&arr[i]==arr[i+1])i++;
             }
         }
     }
