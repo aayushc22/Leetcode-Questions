@@ -1,32 +1,28 @@
 class Solution {
     public long sumDigitDifferences(int[] nums) {
-        int numDigits = String.valueOf(nums[0]).length();  // All numbers have the same number of digits
-        List<Map<Integer, Integer>> digitPositionCounts = new ArrayList<>();
+         Map<Integer, Map<Character, Long>> mp = new HashMap<>();
 
-        // Initialize the list of maps
-        for (int i = 0; i < numDigits; i++) {
-            digitPositionCounts.add(new HashMap<>());
-        }
-
-        // Populate the frequency maps
         for (int num : nums) {
-            for (int i = 0; i < numDigits; i++) {
-                int digit = (num / (int) Math.pow(10, numDigits - 1 - i)) % 10;
-                Map<Integer, Integer> map = digitPositionCounts.get(i);
-                map.put(digit, map.getOrDefault(digit, 0) + 1);
+            String s = String.valueOf(num);
+            for (int i = 0; i < s.length(); i++) {
+                char digit = s.charAt(i);
+                mp.putIfAbsent(i, new HashMap<>());
+                Map<Character, Long> innerMap = mp.get(i);
+                innerMap.put(digit, innerMap.getOrDefault(digit, 0L) + 1);
             }
         }
 
-        long totalDifferences = 0;
-        int n = nums.length;
+        long result = 0;
+        int len = nums.length;
 
-        // Calculate the sum of digit differences
-        for (Map<Integer, Integer> map : digitPositionCounts) {
-            for (int count : map.values()) {
-                totalDifferences += (long) count * (n - count);
+        for (int num : nums) {
+            String s = String.valueOf(num);
+            for (int i = 0; i < s.length(); i++) {
+                char digit = s.charAt(i);
+                result += (len - mp.get(i).get(digit));
             }
         }
 
-        return totalDifferences/2;
+        return result / 2;
     }
 }
