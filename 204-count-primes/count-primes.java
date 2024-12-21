@@ -8,7 +8,7 @@ class Solution {
         arr[0]=false;
         arr[1]=false;
 
-        for(int i=2;i<n;i++){
+        for(int i=2;i*i<n;i++){
 
             for(int j=i*2;j<n;j+=i){
                 arr[j]=false;
@@ -20,6 +20,6 @@ class Solution {
             if(arr[i]==true)
             count++;
         }
-return count;
+     return count;
     }
 }
