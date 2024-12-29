@@ -3,6 +3,7 @@ class Solution {
     public int rob(int[] nums) {
         if(nums.length==1)
         return nums[0];
+        map.clear();
         int ans1 = rob(nums,0,nums.length-2);
         map.clear();
         int ans2= rob(nums,1,nums.length-1);
