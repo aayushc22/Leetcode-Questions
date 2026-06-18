@@ -7,7 +7,7 @@ class Solution {
          List<int []> ans = new ArrayList<>();
          int m=intervals.length;
 
-         for(int i=0;i<m;i++){
+         for(int i=1;i<m;i++){
              if(intervals[i][0]<=e){
                  e=Math.max(e,intervals[i][1]);
              }
