@@ -1,19 +1,18 @@
-
 class Solution {
-    public List<List<Integer>> generate(int n) {
-        List<List<Integer>> ans = new ArrayList<>();
-        List<Integer> pre = null;
-        for(int i=0;i<n;i++){
-            List<Integer> ra = new ArrayList<>();
-            for(int j=0;j<=i;j++)
-                if(j==0||j==i)
-                ra.add(1);
-                else
-                ra.add(pre.get(j-1)+pre.get(j));
-                pre=ra;
-                ans.add(ra);
-             
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> pascal = new ArrayList<>();
+
+        for (int i=0;i<numRows;i++){
+            List<Integer> c = new ArrayList<>();
+            for(int j=0;j<=i;j++){
+                if(j==0||j==i){
+                c.add(1);
+            }else{
+            c.add(pascal.get(i-1).get(j-1)+pascal.get(i-1).get(j));
+            }
+            }
+            pascal.add(c);
         }
-        return ans;
+        return pascal;
     }
 }
