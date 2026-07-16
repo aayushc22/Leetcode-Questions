@@ -1,51 +1,66 @@
 class Solution {
+    static int pairs;
+    public int reversePairs(int[] nums) {
+        pairs =0;
+        mergeSort(nums,0,nums.length-1);
+        return pairs;
+        
+    }
+    public void mergeSort(int arr[],int l,int h){
+        if(l>=h){
+            return;
+        }
+        
+        int m=(l+h)/2;
+        mergeSort(arr,l,m);
+        mergeSort(arr,m+1,h);
+        merge(arr,l,m,h);
+        
+    }
 
-    static int merge(int low,int mid,int high,int[] arr,int[] B){
-         int i =low;
-        int j =mid;
-        int k=low;
-       int count=0;
-       for(i=low;i<mid;i++){
-           while(j<=high && arr[i]>2*(long)arr[j]){
-               j++;
-           }
-           count+=j-(mid);
-       }
-       i=low;
-       j=mid;
-        while(i<=mid-1 && j<=high){
-            if(arr[i]<=arr[j]){
-                B[k++]=arr[i++];
-            }
-            else{
-                B[k++]=arr[j++];
+    public void merge(int arr[],int low,int m,int h){
+        List<Integer> temp = new ArrayList<>();
+        int lft = low;
+        int r = m + 1;
+        int i=low,j=m+1;
+
+        while(i<=m&&j<=h){
+            if(arr[i]>2L*arr[j]){
+                pairs+=(m-i)+1;
+             
+                j++;
                 
             }
+            else {
+                i++;
+            }
+
         }
-        while(i<=mid-1){
-            B[k++]=arr[i++];
+
+        while(lft<=m&&r<=h){
+            if(arr[lft]<arr[r]){
+                temp.add(arr[lft]);
+                lft++;
+            }else{
+                temp.add(arr[r]);
+                r++;
+            }
+
+
         }
-        while(j<=high){
-            B[k++]=arr[j++];
+
+        while(lft<=m){
+            temp.add(arr[lft]);
+            lft++;
         }
-        for(i=low;i<=high;i++){
-            arr[i]=B[i];
+        while(r<=h){
+            temp.add(arr[r]);
+            r++;
         }
-        return count;
-    }
-    static int ms(int low,int high,int[] arr,int[] ans){
-        int count=0;
-        int mid;
-        if(low<high){
-            mid = (low+high)/2;
-            count=ms(low,mid,arr,ans);
-            count+=ms(mid+1,high,arr,ans);
-            count+=merge(low,mid+1,high,arr,ans);
+        for (int k = low; k <= h; k++) {
+            arr[k] = temp.get(k - low);
         }
-        return count;
-    }
-    public int reversePairs(int[] nums) {
-        int[] ans = new int[nums.length];
-        return ms(0,nums.length-1,nums,ans);
+
+
     }
 }
