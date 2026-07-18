@@ -6,6 +6,7 @@ class Solution {
         int ans =0;
 
         for(int i=0;i<n;i++){
+            if(n-i<ans) break;
             HashSet<Integer> e = new HashSet<>();
             HashSet<Integer> o = new HashSet<>();
             for(int j=i;j<n;j++){
