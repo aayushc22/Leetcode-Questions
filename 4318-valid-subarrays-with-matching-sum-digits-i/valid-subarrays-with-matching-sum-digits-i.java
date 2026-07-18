@@ -10,12 +10,12 @@ class Solution {
             long sum =0;
             for(int j=i;j<nums.length;j++){
                 sum+=nums[j];
-                if(j!=0)
+                // if(j!=0)
                 if(isValid(sum,x)) ans++;
 
-                if(j==0){
-                if(isValid(nums[j],x)) ans++;   
-                }
+                // if(j==0){
+                // if(isValid(nums[j],x)) ans++;   
+                // }
                
 
             }
