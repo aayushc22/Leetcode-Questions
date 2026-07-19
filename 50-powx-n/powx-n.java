@@ -1,27 +1,25 @@
 class Solution {
     public double myPow(double x, int n) {
-        long m = n;
-        double result = 1;
-        if (x==0){
-            return 0;
+        return myPo(x,n);
+       
+        
+    }
+    public double myPo(double x, long n) {
+        if(n<0) {
+           long nn;
+           nn=-n;
+           x=1/x;
+           return myPo(x,nn);
+
         }
-        else if(m==0){
-            return 1;
-        }
-        else if (m<0){
-            m=m*(-1);
-            x=1/x;
-        }
-        while(m>0){
-            if(m%2==0){
-            x = x*x;
-            m = m/2;
-            }
-            else{
-                m = m-1;
-                result = result*x;
-            }
-        }
-        return result; 
+        if( n==0) return 1;
+
+        if(n==1) return (double) x;
+
+        double ans = myPo(x,n/2);
+
+        if(n%2==0) return ans*ans;
+        return x*ans*ans;
+        
     }
 }
