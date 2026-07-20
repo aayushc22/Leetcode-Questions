@@ -48,7 +48,7 @@ class Solution {
 
         for(int i=0;i<arr.length;i++){
             if(arr[i]>max) max=Math.max(arr[i],max);
-            else if(arr[i]<min) min=Math.min(arr[i],min);
+            else min=Math.min(arr[i],min);
         }
         return new int[]{min,max};
     }
