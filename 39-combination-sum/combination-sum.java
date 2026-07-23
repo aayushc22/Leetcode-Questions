@@ -13,7 +13,8 @@ class Solution {
             ans.add(new ArrayList<>(list));
             return;
         }
-            if(t>0){
+
+            if(t-arr[i]>=0){
             list.add(arr[i]);
             helper(arr,t-arr[i],i,list,ans);
             list.remove(list.size()-1);
