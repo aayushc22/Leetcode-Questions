@@ -16,11 +16,11 @@ class Solution {
             slow=slow.next;
             fast=fast.next.next;
         }
-     if(fast!=null){ 
+        if(fast!=null){ 
         slow=slow.next;
         }
-    slow=reversed(slow);
-    fast=head;
+        slow=reversed(slow);
+        fast=head;
          
         ListNode rev =slow;
         while(rev!=null){
